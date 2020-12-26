@@ -24,7 +24,7 @@ function App() {
 
 
   return (
-    <Router>
+    <Router basename={window.location.pathname || ''}>
       <Container className='App' style={{ padding: 0 }}>
         <h2 style={style1}>Welcome to Poke-dex.</h2>
         <NavBar keyword={keyword} setKeyword={setKeyword} />
