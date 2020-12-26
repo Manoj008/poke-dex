@@ -9,6 +9,7 @@
     "bootstrap": "^4.5.3",
     "chart.js": "^2.9.4",
     "font-awesome": "^4.7.0",
+    "gh-pages": "^3.1.0",
     "react": "^17.0.1",
     "react-bootstrap": "^1.4.0",
     "react-bootstrap-icons": "^1.2.2",
@@ -19,6 +20,7 @@
     "web-vitals": "^0.2.4"
   },
   "scripts": {
+    "deploy": "gh-pages -d dist",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -41,5 +43,19 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
+  "main": "index.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Manoj008/poke-dex.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "homepage": "https://manoj008/github.io/poke-dex",
+  "bugs": {
+    "url": "https://github.com/Manoj008/poke-dex/issues"
   }
 }
