@@ -50,12 +50,5 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "homepage": "https://manoj008.github.io/poke-dex",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Manoj008/poke-dex.git"
-  },
-  "bugs": {
-    "url": "https://github.com/Manoj008/poke-dex/issues"
-  }
+  "homepage": "https://manoj008.github.io/poke-dex"
 }
