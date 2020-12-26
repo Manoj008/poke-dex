@@ -1,0 +1,11 @@
+.App {
+  text-align: center;
+  background:#eeeeee;
+}
+
+.btnStyle{
+  margin:20px;
+  min-width:10%;
+  width: 80px;
+  
+}
