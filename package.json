@@ -1,7 +1,6 @@
 {
   "name": "poke-dex",
   "version": "0.1.0",
-  "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.6",
     "@testing-library/react": "^11.2.2",
@@ -48,14 +47,14 @@
   "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
   "main": "index.js",
   "devDependencies": {},
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "homepage": "https://manoj008.github.io/poke-dex",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Manoj008/poke-dex.git"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "homepage": "https://manoj008.github.io/poke-dex/",
   "bugs": {
     "url": "https://github.com/Manoj008/poke-dex/issues"
   }
