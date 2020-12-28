@@ -1,26 +1,26 @@
 {
   "files": {
-    "main.css": "/poke-dex/static/css/main.7ced2d65.chunk.css",
-    "main.js": "/poke-dex/static/js/main.89863ccf.chunk.js",
-    "main.js.map": "/poke-dex/static/js/main.89863ccf.chunk.js.map",
-    "runtime-main.js": "/poke-dex/static/js/runtime-main.7fbc0c1c.js",
-    "runtime-main.js.map": "/poke-dex/static/js/runtime-main.7fbc0c1c.js.map",
+    "main.css": "/poke-dex/static/css/main.6b937cd1.chunk.css",
+    "main.js": "/poke-dex/static/js/main.431bc983.chunk.js",
+    "main.js.map": "/poke-dex/static/js/main.431bc983.chunk.js.map",
+    "runtime-main.js": "/poke-dex/static/js/runtime-main.67474b12.js",
+    "runtime-main.js.map": "/poke-dex/static/js/runtime-main.67474b12.js.map",
     "static/css/2.54d0c017.chunk.css": "/poke-dex/static/css/2.54d0c017.chunk.css",
-    "static/js/2.616f209d.chunk.js": "/poke-dex/static/js/2.616f209d.chunk.js",
-    "static/js/2.616f209d.chunk.js.map": "/poke-dex/static/js/2.616f209d.chunk.js.map",
-    "static/js/3.852777a5.chunk.js": "/poke-dex/static/js/3.852777a5.chunk.js",
-    "static/js/3.852777a5.chunk.js.map": "/poke-dex/static/js/3.852777a5.chunk.js.map",
+    "static/js/2.9d051085.chunk.js": "/poke-dex/static/js/2.9d051085.chunk.js",
+    "static/js/2.9d051085.chunk.js.map": "/poke-dex/static/js/2.9d051085.chunk.js.map",
+    "static/js/3.2f19543c.chunk.js": "/poke-dex/static/js/3.2f19543c.chunk.js",
+    "static/js/3.2f19543c.chunk.js.map": "/poke-dex/static/js/3.2f19543c.chunk.js.map",
     "index.html": "/poke-dex/index.html",
     "static/css/2.54d0c017.chunk.css.map": "/poke-dex/static/css/2.54d0c017.chunk.css.map",
-    "static/css/main.7ced2d65.chunk.css.map": "/poke-dex/static/css/main.7ced2d65.chunk.css.map",
-    "static/js/2.616f209d.chunk.js.LICENSE.txt": "/poke-dex/static/js/2.616f209d.chunk.js.LICENSE.txt",
+    "static/css/main.6b937cd1.chunk.css.map": "/poke-dex/static/css/main.6b937cd1.chunk.css.map",
+    "static/js/2.9d051085.chunk.js.LICENSE.txt": "/poke-dex/static/js/2.9d051085.chunk.js.LICENSE.txt",
     "static/media/font-awesome.min.css": "/poke-dex/static/media/fontawesome-webfont.f691f37e.woff"
   },
   "entrypoints": [
-    "static/js/runtime-main.7fbc0c1c.js",
+    "static/js/runtime-main.67474b12.js",
     "static/css/2.54d0c017.chunk.css",
-    "static/js/2.616f209d.chunk.js",
-    "static/css/main.7ced2d65.chunk.css",
-    "static/js/main.89863ccf.chunk.js"
+    "static/js/2.9d051085.chunk.js",
+    "static/css/main.6b937cd1.chunk.css",
+    "static/js/main.431bc983.chunk.js"
   ]
 }
