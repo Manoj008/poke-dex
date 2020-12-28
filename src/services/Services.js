@@ -32,8 +32,8 @@ export async function getPokemon(pokemon) {
             .then(res => res.json())
             .then(data => {
                 resolve(data);
-            }).catch((message) => {
-                console.log(message);
+            }).catch((e) => {
+                resolve(404);
             })
     );
 };

@@ -29,7 +29,7 @@
 
 
 .comp-data{
-    background-color: lightgray;
+    background-color:white;
     border-radius: 0.4rem;
     margin: 1rem 2rem 1rem 2rem;
     box-shadow: 3px 3px 5px grey;
@@ -153,4 +153,88 @@
     border-bottom: 1px solid black;
     padding-bottom: 0.5rem;
     padding-top: 0.4rem;
+}
+
+
+
+
+.heading-block{
+    color: white;
+    background-color : red;
+    margin: 0rem;
+    padding: 0rem;
+    width: 100%;
+}
+
+.heading{
+    color: white;
+    margin: 0rem;
+    padding: 0rem;
+    width: 95%;
+    display: inline-block;
+  
+}
+
+.search-bar{
+    color: white;
+    background-color : red;
+    margin: 0rem;
+    padding: 0rem;
+    width: 100%;
+    font-size: 1.5rem;
+}
+
+.searchBox{
+    color: black;
+    width: 94%;
+    border: none;
+    margin-left: 0rem;
+    padding-left: 1rem;
+    margin-right: 0.4rem;
+    font-size: 1.5rem;
+    display: inline-block;
+}
+
+.suggest-block{
+  
+    width: 100%;
+    position: sticky;
+    z-index: 1;
+}
+
+ul {
+  
+    /* padding: 0rem 2rem 0rem; */
+    max-height: 12rem;
+    position: absolute;
+    width: 100%;
+    z-index: 1;
+    overflow-y: auto;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 0rem;
+    /* border-left: none;
+    border-right: none; */
+   
+}
+
+li {
+    list-style: none;
+    text-align: left;
+    color:black;
+    padding: 0.3rem 1.2rem;
+    border-bottom: 1px solid lightgray;
+    border-left: 1px solid lightgray;
+    background-color: #eee;
+    width: 100%;
+    cursor: pointer;
+}
+
+ul li:hover{
+    list-style: none;
+    text-align: left;
+    padding: 0.3rem 1.2rem;
+    border-bottom: 1px solid lightgray;
+    background-color:lightskyblue;
+    width: 100%;
+    cursor: pointer;
 }

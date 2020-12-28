@@ -65,7 +65,7 @@ function Ability({ abilities }) {
                         <h5 className='ability-style'>{myAbility.ability.name + ' '}<i className='fa fa-info-circle' style={{ fontSize: '0.8rem' }}></i></h5>
                     </Col>
 
-                    <Modal show={show} onHide={handleClose}>
+                    <Modal show={show} onHide={handleClose} style={{ width: '80%' }}>
                         <Modal.Header closeButton>
                             <Modal.Title>{name}</Modal.Title>
                         </Modal.Header>

@@ -35,14 +35,16 @@ function PokemonList() {
         setCurrUrl(prevUrl);
     }
 
-
     return (
         <Container >
             {loading ? <h4 style={{ margin: 'auto' }}> Loading Pokemons...</h4> :
                 <div style={{ justifyContent: 'center' }}>
                     <Pokemons key={pokemons.name} pokemons={pokemons} />
-                    <Button disabled={!prevUrl} className='btnStyle' onClick={prevPage}>Previous</Button>
-                    <Button disabled={!nextUrl} className='btnStyle' onClick={nextPage}>Next</Button>
+                    <hr style={{ paddingBottom: '0rem' }} />
+                    <div>
+                        <Button disabled={!prevUrl} className='btnStyle' onClick={prevPage}>Previous</Button>
+                        <Button disabled={!nextUrl} className='btnStyle' onClick={nextPage}>Next</Button>
+                    </div>
                 </div>
             }
         </Container>)

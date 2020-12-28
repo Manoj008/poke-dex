@@ -15,6 +15,8 @@ function PokemonDetails(props) {
     const [species, setSpecies] = useState([]);
     const [evolution, setEvolution] = useState([]);
     const [pokeDetails, setPokeDetails] = useState('');
+    const [prevBtn, setPrevBtn] = useState(true);
+    const [failed, setFailed] = useState(false);
 
     var history = useHistory();
     const path = "https://pokeapi.co/api/v2" + props.location.pathname;
@@ -22,41 +24,53 @@ function PokemonDetails(props) {
         setLoading(true);
         async function fetchData() {
             let pokemonData = await getPokemon(path);
-            setPokemon(pokemonData);
-            let spec = await getSpecies(pokemonData.species.url);
-            setSpecies(spec);
 
-            spec.flavor_text_entries.map((fl, index) => {
-                if (fl.language.name === 'en') {
-                    setPokeDetails(fl.flavor_text);
+            if (pokemonData === 404) {
+                setFailed(true);
+            } else {
+                setFailed(false);
+                setPokemon(pokemonData);
+                if (pokemonData.id === 1) {
+                    setPrevBtn(false);
                 }
-            })
-            let evolve = await getEvolution(spec.evolution_chain.url);
-            let chain = [];
-            let evoData = evolve.chain;
-            do {
-                let numberOfEvolutions = evoData['evolves_to'].length;
+                else {
+                    setPrevBtn(true);
+                }
+                let spec = await getSpecies(pokemonData.species.url);
+                setSpecies(spec);
 
-                chain.push({
-                    "species_name": evoData.species.name,
-                    "min_level": !evoData ? 1 : evoData.min_level,
-                });
-
-                if (numberOfEvolutions > 1) {
-                    for (let i = 1; i < numberOfEvolutions; i++) {
-                        chain.push({
-                            "species_name": evoData.evolves_to[i].species.name,
-                            "min_level": !evoData.evolves_to[i] ? 1 : evoData.evolves_to[i].min_level,
-
-                        });
+                spec.flavor_text_entries.map((fl, index) => {
+                    if (fl.language.name === 'en') {
+                        setPokeDetails(fl.flavor_text);
                     }
-                }
-                evoData = evoData['evolves_to'][0];
-            } while (!!evoData && evoData.hasOwnProperty('evolves_to'));
+                })
+                let evolve = await getEvolution(spec.evolution_chain.url);
+                let chain = [];
+                let evoData = evolve.chain;
+                do {
+                    let numberOfEvolutions = evoData['evolves_to'].length;
 
-            var e = [];
-            const evoChain = await getEvolutionChain(chain);
-            setEvolution(evoChain);
+                    chain.push({
+                        "species_name": evoData.species.name,
+                        "min_level": !evoData ? 1 : evoData.min_level,
+                    });
+
+                    if (numberOfEvolutions > 1) {
+                        for (let i = 1; i < numberOfEvolutions; i++) {
+                            chain.push({
+                                "species_name": evoData.evolves_to[i].species.name,
+                                "min_level": !evoData.evolves_to[i] ? 1 : evoData.evolves_to[i].min_level,
+
+                            });
+                        }
+                    }
+                    evoData = evoData['evolves_to'][0];
+                } while (!!evoData && evoData.hasOwnProperty('evolves_to'));
+
+                var e = [];
+                const evoChain = await getEvolutionChain(chain);
+                setEvolution(evoChain);
+            }
             setLoading(false);
         }
         fetchData();
@@ -71,43 +85,48 @@ function PokemonDetails(props) {
     }
 
     return (
-        loading ? <h3> Loading.. </h3> : (
-            <Card >
-                <Row className='no-gutters' style={{ justifyContent: 'center' }}>
-                    <Col>
-                        <Button className='btn-info btn-block' onClick={handlePrevSubmit}><i className='fa fa-arrow-left'></i>{'#' + (pokemon.id - 1)}</Button>
-                    </Col>
-                    <Col>
-                        <h3 style={{ margin: '1rem', textAlign: 'center' }}> {pokemon.name.toUpperCase() + '  '}<span style={{ color: "grey" }}> {'#' + pokemon.id}</span> </h3>
-                    </Col>
-                    <Col>
-                        <Button className='btn-info btn-block' onClick={handleNextSubmit}>{'#' + (pokemon.id + 1)}<i className='fa fa-arrow-right'></i></Button>
-                    </Col>
-                </Row >
-                <Row>
-                    <Col className='comp-data'>
-                        <Card.Img className='full-image' src={pokemon.sprites.other["official-artwork"]["front_default"]} />
-                        {/* <Card.Img xs='4' className='full-image' src={pokemon.sprites.other["dream_world"]["front_default"]} /> */}
-                        <Stat stats={pokemon.stats} />
-                    </Col >
-                    <Col className='comp-data'>
-                        <div style={{ justifyContent: 'center' }}>
+        (loading ?
+            <h3> Loading.. </h3> :
+            failed ?
+                <h4 className={{ margin: 'auto' }
+                }> No Pokemon Found For this Search</h4 > : (
+
+                    <Card style={{ backgroundColor: 'lightgray' }}>
+                        <Row className='no-gutters' style={{ justifyContent: 'center' }}>
+                            <Col>
+                                <Button disabled={!prevBtn} className='btn-info btn-block' onClick={handlePrevSubmit}><i className='fa fa-arrow-left'></i>{'#' + (pokemon.id - 1)}</Button>
+                            </Col>
+                            <Col>
+                                <h4 style={{ margin: '0.3rem 1rem 0rem', textAlign: 'center' }}> {pokemon.name.toUpperCase() + '  '}<span style={{ color: "grey" }}> {'#' + pokemon.id}</span> </h4>
+                            </Col>
+                            <Col>
+                                <Button className='btn-info btn-block' onClick={handleNextSubmit}>{'#' + (pokemon.id + 1)}<i className='fa fa-arrow-right'></i></Button>
+                            </Col>
+                        </Row >
+                        <Row>
+                            <Col className='comp-data'>
+                                <Card.Img className='full-image' src={pokemon.sprites.other["official-artwork"]["front_default"]} />
+                                {/* <Card.Img xs='4' className='full-image' src={pokemon.sprites.other["dream_world"]["front_default"]} /> */}
+                                <Stat stats={pokemon.stats} />
+                            </Col >
+                            <Col className='comp-data'>
+                                <div style={{ justifyContent: 'center' }}>
 
 
-                            <h6 style={{ margin: '1rem 0.5rem' }} className='poke-details'>{pokeDetails}</h6>
+                                    <h6 style={{ margin: '1rem 0.5rem' }} className='poke-details'>{pokeDetails}</h6>
 
-                            <Row style={{ justifyContent: 'center', margin: '0.5rem', backgroundColor: 'steelblue', color: 'white', borderRadius: '0.3rem' }}>
-                                <h5 style={{ margin: '0.5rem auto' }}>{'Height: ' + pokemon.height}</h5>
-                                <h5 style={{ margin: '0.5rem auto' }}>{'Weight: ' + pokemon.weight}</h5>
-                            </Row>
-                            <Ability abilities={pokemon.abilities} />
-                            <Type types={pokemon.types} />
-
-                        </div>
-                    </Col>
-                </Row >
-                <Evolve evolution={evolution} />
-            </Card >
+                                    <Row style={{ justifyContent: 'center', margin: '0.5rem', backgroundColor: 'steelblue', color: 'white', borderRadius: '0.3rem' }}>
+                                        <h5 style={{ margin: '0.5rem auto' }}>{'Height: ' + pokemon.height}</h5>
+                                        <h5 style={{ margin: '0.5rem auto' }}>{'Weight: ' + pokemon.weight}</h5>
+                                    </Row>
+                                    <Ability abilities={pokemon.abilities} />
+                                    <Type types={pokemon.types} />
+                                </div>
+                            </Col>
+                        </Row >
+                        <Evolve evolution={evolution} />
+                    </Card >
+                )
         )
     );
 };
