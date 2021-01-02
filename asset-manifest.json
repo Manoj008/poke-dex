@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/poke-dex/static/css/main.6850e95f.chunk.css",
-    "main.js": "/poke-dex/static/js/main.3ebcc97a.chunk.js",
-    "main.js.map": "/poke-dex/static/js/main.3ebcc97a.chunk.js.map",
+    "main.js": "/poke-dex/static/js/main.ce1cc9d8.chunk.js",
+    "main.js.map": "/poke-dex/static/js/main.ce1cc9d8.chunk.js.map",
     "runtime-main.js": "/poke-dex/static/js/runtime-main.7d949e28.js",
     "runtime-main.js.map": "/poke-dex/static/js/runtime-main.7d949e28.js.map",
     "static/css/2.54d0c017.chunk.css": "/poke-dex/static/css/2.54d0c017.chunk.css",
@@ -21,6 +21,6 @@
     "static/css/2.54d0c017.chunk.css",
     "static/js/2.9cd46461.chunk.js",
     "static/css/main.6850e95f.chunk.css",
-    "static/js/main.3ebcc97a.chunk.js"
+    "static/js/main.ce1cc9d8.chunk.js"
   ]
 }
