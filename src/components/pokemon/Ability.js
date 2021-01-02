@@ -61,11 +61,11 @@ function Ability({ abilities }) {
             abilities.map((myAbility, index) =>
                 <>
 
-                    <Col xs='12' sm='6' md='12' lg='6' xl='6' style={{ cursor: 'pointer' }} onClick={() => handleShow(index)}>
+                    <Col xs='12' sm='6' md='12' lg='12' xl='6' style={{ cursor: 'pointer' }} onClick={() => handleShow(index)}>
                         <h5 className='ability-style'>{myAbility.ability.name + ' '}<i className='fa fa-info-circle' style={{ fontSize: '0.8rem' }}></i></h5>
                     </Col>
 
-                    <Modal show={show} onHide={handleClose} style={{ width: '80%' }}>
+                    <Modal show={show} onHide={handleClose} style={{ width: '100%' }}>
                         <Modal.Header closeButton>
                             <Modal.Title>{name}</Modal.Title>
                         </Modal.Header>
@@ -83,7 +83,7 @@ function Ability({ abilities }) {
 
     return (
         <div>
-            <h4 style={{ textAlign: 'left', marginLeft: '10px' }}>Abilities</h4>
+            <h4 style={{ textAlign: 'left', marginLeft: '20px', color: '#EEE' }}>Abilities</h4>
             <Row className='no-gutters'>
                 {getAbility(abilities)}
             </Row>

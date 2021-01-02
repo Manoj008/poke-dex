@@ -39,7 +39,7 @@ function getType(types) {
 function Type({ types }) {
     return (
         <div>
-            <h4 style={{ textAlign: 'left', marginLeft: '10px' }}>Type</h4>
+            <h4 style={{ textAlign: 'left', marginLeft: '20px', color: '#EEE' }}>Type</h4>
             <Row className='no-gutters'>
                 {getType(types)}
             </Row>

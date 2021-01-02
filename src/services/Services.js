@@ -75,7 +75,6 @@ export async function getEvolutionChain(chain) {
 };
 
 export async function getAllAbilities(abilities) {
-    console.log("async call " + abilities);
     let _allAbilities = await Promise.all(
         abilities.map(
             async a => {

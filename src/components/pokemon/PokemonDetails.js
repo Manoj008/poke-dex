@@ -7,6 +7,8 @@ import Ability from './Ability';
 import Type from './Type';
 import Stat from './Stat';
 import { useHistory } from "react-router-dom";
+import { CircularProgress } from "@material-ui/core";
+import PokemonCard from "./PokemonCard";
 
 
 function PokemonDetails(props) {
@@ -15,8 +17,8 @@ function PokemonDetails(props) {
     const [species, setSpecies] = useState([]);
     const [evolution, setEvolution] = useState([]);
     const [pokeDetails, setPokeDetails] = useState('');
-    const [prevBtn, setPrevBtn] = useState(true);
     const [failed, setFailed] = useState(false);
+    const [prevBtn, setPrevBtn] = useState(false);
 
     var history = useHistory();
     const path = "https://pokeapi.co/api/v2" + props.location.pathname;
@@ -30,7 +32,7 @@ function PokemonDetails(props) {
             } else {
                 setFailed(false);
                 setPokemon(pokemonData);
-                if (pokemonData.id === 1) {
+                if (pokemonData.id < 2) {
                     setPrevBtn(false);
                 }
                 else {
@@ -47,86 +49,112 @@ function PokemonDetails(props) {
                 let evolve = await getEvolution(spec.evolution_chain.url);
                 let chain = [];
                 let evoData = evolve.chain;
+                var i = 0;
                 do {
+
                     let numberOfEvolutions = evoData['evolves_to'].length;
 
+                    var s = evoData.species.url.split('/');
+                    var k = s[s.length - 2];
                     chain.push({
+                        "id": k,
                         "species_name": evoData.species.name,
-                        "min_level": !evoData ? 1 : evoData.min_level,
+                        "sprite": `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${k}.png`
                     });
 
                     if (numberOfEvolutions > 1) {
-                        for (let i = 1; i < numberOfEvolutions; i++) {
-                            chain.push({
+                        var innerChain = [];
+                        for (let i = 0; i < numberOfEvolutions; i++) {
+                            var s = evoData.evolves_to[i].species.url.split('/');
+                            var k = s[s.length - 2];
+                            innerChain.push({
+                                "id": k,
                                 "species_name": evoData.evolves_to[i].species.name,
-                                "min_level": !evoData.evolves_to[i] ? 1 : evoData.evolves_to[i].min_level,
-
+                                "sprite": `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${k}.png`
                             });
                         }
+                        chain = chain.concat([innerChain]);
+                        evoData = evoData['evolves_to'][0]['evolves_to'][0];
                     }
-                    evoData = evoData['evolves_to'][0];
-                } while (!!evoData && evoData.hasOwnProperty('evolves_to'));
+                    else {
+                        evoData = evoData['evolves_to'][0];
+                    }
 
-                var e = [];
-                const evoChain = await getEvolutionChain(chain);
-                setEvolution(evoChain);
+                } while (!!evoData && evoData.hasOwnProperty('evolves_to'));
+                if (!Array.isArray(chain[chain.length - 1])) {
+                    console.log('inside last form')
+                    let sp = await getSpecies('https://pokeapi.co/api/v2/pokemon-species/' + chain[chain.length - 1].id);
+
+                    var megaEvo = [];
+                    sp.varieties.forEach((s, i) => {
+                        console.log('inside loop');
+                        if (!s.is_default && s.pokemon.name.includes('mega')) {
+                            var b = s.pokemon.url.split('/');
+                            var k = b[b.length - 2];
+                            console.log('inside iff' + s.pokemon.url);
+                            megaEvo.push({
+                                "id": k,
+                                "species_name": s.pokemon.name,
+                                "sprite": `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${k}.png`
+                            });
+                        }
+
+                    });
+                    if (megaEvo.length > 0) {
+                        chain = chain.concat([megaEvo]);
+                    }
+                } else {
+                    console.log('inside last form')
+                    let sp = await getSpecies('https://pokeapi.co/api/v2/pokemon-species/' + chain[chain.length - 1][0].id);
+
+                    var megaEvo = [];
+                    sp.varieties.forEach((s, i) => {
+                        console.log('inside loop');
+                        if (!s.is_default && s.pokemon.name.includes('mega')) {
+                            var b = s.pokemon.url.split('/');
+                            var k = b[b.length - 2];
+                            console.log('inside iff' + s.pokemon.url);
+                            megaEvo.push({
+                                "id": k,
+                                "species_name": s.pokemon.name,
+                                "sprite": `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${k}.png`
+                            });
+                        }
+
+                    });
+                    if (megaEvo.length > 0) {
+                        chain = chain.concat([megaEvo]);
+                    }
+                }
+
+                setEvolution(chain);
             }
             setLoading(false);
         }
         fetchData();
     }, [path]);
 
-    const handlePrevSubmit = () => {
-        history.push('/pokemon/' + (pokemon.id - 1));
-    }
 
-    const handleNextSubmit = () => {
-        history.push('/pokemon/' + (pokemon.id + 1));
-    }
 
     return (
         (loading ?
-            <h3> Loading.. </h3> :
+            <div style={{
+                display: 'flex', alignItems: 'center',
+                justifyContent: 'center'
+            }}>
+                <CircularProgress />
+            </div> :
             failed ?
-                <h4 className={{ margin: 'auto' }
-                }> No Pokemon Found For this Search</h4 > : (
+                <div style={{
+                    display: 'flex', alignItems: 'center',
+                    justifyContent: 'center'
+                }}>
+                    <h4 style={{ color: '#ddd' }}> No Pokemon Found For this Search</h4 >
+                </div> :
 
-                    <Card style={{ backgroundColor: 'lightgray' }}>
-                        <Row className='no-gutters' style={{ justifyContent: 'center' }}>
-                            <Col>
-                                <Button disabled={!prevBtn} className='btn-info btn-block' onClick={handlePrevSubmit}><i className='fa fa-arrow-left'></i>{'#' + (pokemon.id - 1)}</Button>
-                            </Col>
-                            <Col>
-                                <h4 style={{ margin: '0.3rem 1rem 0rem', textAlign: 'center' }}> {pokemon.name.toUpperCase() + '  '}<span style={{ color: "grey" }}> {'#' + pokemon.id}</span> </h4>
-                            </Col>
-                            <Col>
-                                <Button className='btn-info btn-block' onClick={handleNextSubmit}>{'#' + (pokemon.id + 1)}<i className='fa fa-arrow-right'></i></Button>
-                            </Col>
-                        </Row >
-                        <Row>
-                            <Col className='comp-data'>
-                                <Card.Img className='full-image' src={pokemon.sprites.other["official-artwork"]["front_default"]} />
-                                {/* <Card.Img xs='4' className='full-image' src={pokemon.sprites.other["dream_world"]["front_default"]} /> */}
-                                <Stat stats={pokemon.stats} />
-                            </Col >
-                            <Col className='comp-data'>
-                                <div style={{ justifyContent: 'center' }}>
+                < PokemonCard pokemon={pokemon} evolution={evolution} pokeDetails={pokeDetails} prevBtn={prevBtn} />
 
 
-                                    <h6 style={{ margin: '1rem 0.5rem' }} className='poke-details'>{pokeDetails}</h6>
-
-                                    <Row style={{ justifyContent: 'center', margin: '0.5rem', backgroundColor: 'steelblue', color: 'white', borderRadius: '0.3rem' }}>
-                                        <h5 style={{ margin: '0.5rem auto' }}>{'Height: ' + pokemon.height}</h5>
-                                        <h5 style={{ margin: '0.5rem auto' }}>{'Weight: ' + pokemon.weight}</h5>
-                                    </Row>
-                                    <Ability abilities={pokemon.abilities} />
-                                    <Type types={pokemon.types} />
-                                </div>
-                            </Col>
-                        </Row >
-                        <Evolve evolution={evolution} />
-                    </Card >
-                )
         )
     );
 };
