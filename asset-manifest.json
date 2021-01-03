@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/poke-dex/static/css/main.6850e95f.chunk.css",
-    "main.js": "/poke-dex/static/js/main.ce1cc9d8.chunk.js",
-    "main.js.map": "/poke-dex/static/js/main.ce1cc9d8.chunk.js.map",
+    "main.css": "/poke-dex/static/css/main.b7187e57.chunk.css",
+    "main.js": "/poke-dex/static/js/main.f2b5324b.chunk.js",
+    "main.js.map": "/poke-dex/static/js/main.f2b5324b.chunk.js.map",
     "runtime-main.js": "/poke-dex/static/js/runtime-main.7d949e28.js",
     "runtime-main.js.map": "/poke-dex/static/js/runtime-main.7d949e28.js.map",
     "static/css/2.54d0c017.chunk.css": "/poke-dex/static/css/2.54d0c017.chunk.css",
@@ -12,7 +12,7 @@
     "static/js/3.46bde6cc.chunk.js.map": "/poke-dex/static/js/3.46bde6cc.chunk.js.map",
     "index.html": "/poke-dex/index.html",
     "static/css/2.54d0c017.chunk.css.map": "/poke-dex/static/css/2.54d0c017.chunk.css.map",
-    "static/css/main.6850e95f.chunk.css.map": "/poke-dex/static/css/main.6850e95f.chunk.css.map",
+    "static/css/main.b7187e57.chunk.css.map": "/poke-dex/static/css/main.b7187e57.chunk.css.map",
     "static/js/2.9cd46461.chunk.js.LICENSE.txt": "/poke-dex/static/js/2.9cd46461.chunk.js.LICENSE.txt",
     "static/media/font-awesome.min.css": "/poke-dex/static/media/fontawesome-webfont.f691f37e.woff"
   },
@@ -20,7 +20,7 @@
     "static/js/runtime-main.7d949e28.js",
     "static/css/2.54d0c017.chunk.css",
     "static/js/2.9cd46461.chunk.js",
-    "static/css/main.6850e95f.chunk.css",
-    "static/js/main.ce1cc9d8.chunk.js"
+    "static/css/main.b7187e57.chunk.css",
+    "static/js/main.f2b5324b.chunk.js"
   ]
 }
